@@ -5,5 +5,6 @@
         <file>page/FileMovePage.qml</file>
         <file>module/UIFlatButton.qml</file>
         <file>module/UIFlatTextEdit.qml</file>
+        <file>module/UICheckBox.qml</file>
     </qresource>
 </RCC>

@@ -47,9 +47,22 @@ void FileMoveObject::setText(const QString& strText)
 
 void FileMoveObject::copyFiles()
 {
+    if(!m_strSource.length() || !m_strDest.length() || !m_strText.length())
+    {
+        m_strLog = "请确认路径与关键字都已填写!";
+        emit logChanged();
+        return;
+    }
+
     FileMoveThread* thread = new FileMoveThread();
     connect(thread, SIGNAL(sig_showLog(QString)), this, SLOT(slot_showLog(QString)));
     thread->startThread(m_strSource, m_strDest, m_strText);
+}
+
+void FileMoveObject::updateFilter(const QStringList& list)
+{
+    m_listFilter.clear();
+    m_listFilter.append(list);
 }
 
 void FileMoveObject::slot_showLog(QString strLog)

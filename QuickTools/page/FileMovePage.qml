@@ -154,7 +154,7 @@ Rectangle {
 
 
 
-    Rectangle{
+    UIRadiusRectangle{
             id: editLog
             anchors.left: txtName.left
             anchors.right: btnDestPath.right
@@ -162,14 +162,17 @@ Rectangle {
             anchors.topMargin: offset + editHeight / 2
             anchors.bottom: parent.bottom
             anchors.bottomMargin: offset
-            border.color: "gray"
+            borderColor: "#74c0fc"
+            borderWidth: 2
+            color: "white"
+            cornersRadius: [5, 5, 5, 5]
             clip: true
 
             TextEdit{
                 id: txtLog
                 width: parent.width - offset + 6
                 height: contentHeight
-                y: -vscroll.position * txtLog.height
+                y: -vscroll.position * txtLog.height + 5
                 readOnly: true
                 wrapMode: TextEdit.Wrap
                 selectByMouse: true

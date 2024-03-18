@@ -11,7 +11,7 @@ Window {
     visible: true
     width: 640
     height: 480
-    flags: "FramelessWindowHint"
+    flags: Qt.FramelessWindowHint | Qt.Window
     color: "#00000000"
 
 
@@ -20,7 +20,7 @@ Window {
     MouseArea{
         id: title
         anchors.left: parent.left
-        width: 60
+        width: parent.width
         height: parent.height
 
         onPressed: {

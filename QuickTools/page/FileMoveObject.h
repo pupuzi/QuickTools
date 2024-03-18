@@ -16,6 +16,8 @@ private:
     QString m_strDest;
     QString m_strLog;
 
+    QStringList m_listFilter;
+
 public:
     explicit FileMoveObject(QObject *parent = nullptr);
     virtual ~FileMoveObject();
@@ -27,6 +29,8 @@ public:
     Q_INVOKABLE void setSourcePath(const QString& strSource);
     Q_INVOKABLE void setDestPath(const QString& strDest);
     Q_INVOKABLE void copyFiles();
+
+    Q_INVOKABLE void updateFilter(const QStringList& list);
 
 public slots:
     void slot_showLog(QString strLog);
