@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>module/UIRadiusRectangle.qml</file>
+        <file>page/FileMovePage.qml</file>
+        <file>module/UIFlatButton.qml</file>
+        <file>module/UIFlatTextEdit.qml</file>
+    </qresource>
+</RCC>
