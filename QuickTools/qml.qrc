@@ -6,5 +6,6 @@
         <file>module/UIFlatButton.qml</file>
         <file>module/UIFlatTextEdit.qml</file>
         <file>module/UICheckBox.qml</file>
+        <file>page/VideoMngrPage.qml</file>
     </qresource>
 </RCC>

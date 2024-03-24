@@ -73,6 +73,20 @@ Window {
                 pageLoader.source = "qrc:/page/FileMovePage.qml"
             }
         }
+
+        Button{
+            id: btnVideoMngr
+            anchors.top: btnFileMove.bottom
+            anchors.topMargin: 10
+            anchors.left: parent.left
+            anchors.leftMargin: 10
+            width: 40
+            height: 40
+
+            onClicked: {
+                pageLoader.source = "qrc:/page/VideoMngrPage.qml"
+            }
+        }
     }
 
     //阴影

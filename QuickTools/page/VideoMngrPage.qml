@@ -7,7 +7,7 @@ import UIObject 1.0
 import "../module"
 
 Rectangle {
-    id: pageFileMove
+    id: pageVideoMngr
     anchors.fill: parent
 
     property int offset: 10
@@ -33,7 +33,7 @@ Rectangle {
         anchors.leftMargin: offset
         anchors.top: parent.top
         anchors.topMargin: offset
-        text: "文件路径:"
+        text: "源文件路径:"
     }
 
     UIFlatTextEdit{
@@ -59,9 +59,9 @@ Rectangle {
 
         FileDialog{
             id: dlgSourcePath
-            title: "选择文件夹路径"
+            title: "选择源文件"
             selectExisting: true
-            selectFolder: true
+            selectFolder: false
             onAccepted: {
                 editSourcePath.text = dlgSourcePath.fileUrl.toString().substring(8,dlgSourcePath.fileUrl.length)
                 quicktoolObject.setSourcePath(editSourcePath.text)
@@ -73,90 +73,26 @@ Rectangle {
         }
     }
 
-    Text {
-        id: txtDestPath
-        anchors.left: txtSourcePath.left
-        anchors.top: txtSourcePath.bottom
-        anchors.topMargin: offset + editHeight / 2
-        text: "目标路径:"
-    }
-
-    UIFlatTextEdit{
-        id: editDestPath
-        anchors.left: txtDestPath.right
-        anchors.leftMargin: offset
-        anchors.top: txtDestPath.top
-        anchors.topMargin: -4
-        height: editHeight
-        width: editWidth
-        selectByMouse: true
-        readOnly: true
-    }
-
     UIFlatButton{
-        id: btnDestPath
-        anchors.left: editDestPath.right
+        id: btnCompress
+        anchors.left: editSourcePath.right
         anchors.leftMargin: offset
-        anchors.top: editDestPath.top
+        anchors.top: btnSourcePath.bottom
+        anchors.topMargin: 20
         width: editHeight * 2
         height: editHeight
-        text: "选择"
-
-        FileDialog{
-            id: dlgDestPath
-            title: "选择目标路径"
-            selectExisting: true
-            selectFolder: true
-            onAccepted: {
-                editDestPath.text = dlgDestPath.fileUrl.toString().substring(8,dlgDestPath.fileUrl.length)
-                quicktoolObject.setDestPath(editDestPath.text)
-            }
-        }
+        text: "压制"
 
         onClicked: {
-            dlgDestPath.open()
-        }
-    }
-
-    Text {
-        id: txtName
-        anchors.left: txtDestPath.left
-        anchors.top: txtDestPath.bottom
-        anchors.topMargin: offset + editHeight / 2
-        text: "文件关键字:"
-    }
-
-    UIFlatTextEdit{
-        id: editName
-        anchors.left: txtName.right
-        anchors.leftMargin: offset
-        anchors.top: txtName.top
-        anchors.topMargin: -4
-        height: editHeight
-        width: editWidth / 2
-        selectByMouse: true
-    }
-
-    UIFlatButton{
-        id: btnCopy
-        anchors.left: editName.right
-        anchors.leftMargin: offset
-        anchors.top: editName.top
-        width: editHeight * 2
-        height: editHeight
-        text: "开始"
-
-        onClicked: {
-            quicktoolObject.setText(editName.text)
-            quicktoolObject.copyFiles()
+            quicktoolObject.compressVideos();
         }
     }
 
     UIRadiusRectangle{
             id: editLog
-            anchors.left: txtName.left
-            anchors.right: btnDestPath.right
-            anchors.top: txtName.bottom
+            anchors.left: txtSourcePath.left
+            anchors.right: btnCompress.right
+            anchors.top: btnCompress.bottom
             anchors.topMargin: offset + editHeight / 2
             anchors.bottom: parent.bottom
             anchors.bottomMargin: offset

@@ -1,7 +1,7 @@
 ﻿#include <QGuiApplication>
 #include <QQmlApplicationEngine>
 
-#include "page/FileMoveObject.h"
+#include "page/QuickToolObject.h"
 
 int main(int argc, char *argv[])
 {
@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
-    qmlRegisterType<FileMoveObject>("UIObject", 1, 0, "FileMoveObject");
+    qmlRegisterType<QuickToolObject>("UIObject", 1, 0, "QuickToolObject");
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));

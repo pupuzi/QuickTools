@@ -15,8 +15,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        page/FileMoveObject.cpp \
-        page/FileMoveThread.cpp
+        page/FileMoveThread.cpp \
+        page/QuickToolObject.cpp \
+        page/VideoMngrThread.cpp
 
 RESOURCES += qml.qrc
 
@@ -34,5 +35,16 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 DISTFILES +=
 
 HEADERS += \
-    page/FileMoveObject.h \
-    page/FileMoveThread.h
+    page/FileMoveThread.h \
+    page/QuickToolObject.h \
+    page/VideoMngrThread.h
+
+INCLUDEPATH += $$PWD/openlib/ffmpeg/include
+LIBS += $$PWD/openlib/ffmpeg/lib/avcodec.lib\
+        $$PWD/openlib/ffmpeg/lib/avdevice.lib\
+        $$PWD/openlib/ffmpeg/lib/avfilter.lib\
+        $$PWD/openlib/ffmpeg/lib/avformat.lib\
+        $$PWD/openlib/ffmpeg/lib/avutil.lib\
+        $$PWD/openlib/ffmpeg/lib/postproc.lib\
+        $$PWD/openlib/ffmpeg/lib/swresample.lib\
+        $$PWD/openlib/ffmpeg/lib/swscale.lib
