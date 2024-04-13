@@ -11,7 +11,8 @@ private:
     QString m_strError;
     QStringList m_strNames;
 
-    bool compress_h265(const QString& strName);
+    void printErrLog(int nRet);
+    bool compress(const QString& strName);
 
 public:
     VideoMngrThread();

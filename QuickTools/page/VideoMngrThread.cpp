@@ -145,16 +145,15 @@ bool VideoMngrThread::compress(const QString& strName)
         return false;
     }
 
-    double duration = (double)video_stream->duration / av_q2d(video_stream->time_base);
-
-    int64_t frame_number = 0;
-    int64_t frame_total = video_stream->nb_frames;
+    int64_t nNumber = 0;
+    int64_t nTotal = video_stream->nb_frames;
+    double nPercent = 0;
     AVPacket packet;
     while(av_read_frame(input_format_context, &packet) >= 0)
     {
         if(packet.stream_index == video_stream->index)
         {
-            frame_number++;
+            nNumber++;
             if(avcodec_send_packet(video_codec_context, &packet) < 0)
             {
                 return false;
@@ -177,8 +176,12 @@ bool VideoMngrThread::compress(const QString& strName)
             }
 
             //计算转码进度
-            //QString strDuration = QString("压制进度: %1 / %2").arg(frame_number).arg(frame_total);
-            //emit sig_showLog(strDuration);
+            if(nPercent != (nNumber * 100 / nTotal))
+            {
+                nPercent = nNumber * 100 / nTotal;
+                QString strDuration = QString("压制进度: %1%").arg(nPercent);
+                emit sig_showLog(strDuration);
+            }
         }
         else if(packet.stream_index == audio_stream->index)
         {
